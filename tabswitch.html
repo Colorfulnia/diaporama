@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Tab Switch Demo</title>
+  <style>
+    /* 根据你实际需求定制样式，这里只是展示原代码结构 */
+    body {
+      margin: 0;
+      font-family: sans-serif;
+    }
+    .flex {
+      display: flex;
+    }
+    .flex-col {
+      flex-direction: column;
+    }
+    .overflow-auto {
+      overflow: auto;
+    }
+    .justify-center {
+      justify-content: center;
+    }
+    .transition-opacity {
+      transition: opacity 0.3s;
+    }
+    .opacity-0 {
+      opacity: 0;
+    }
+    .opacity-100 {
+      opacity: 1;
+    }
+    .pointer-events-none {
+      pointer-events: none;
+    }
+    .pointer-evens-none {
+      pointer-events: none;
+    }
+    .relative {
+      position: relative;
+    }
+    .absolute {
+      position: absolute;
+    }
+    .w-full {
+      width: 100%;
+    }
+    .mx-auto {
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .mt-s {
+      margin-top: 1rem;
+    }
+    .mb-l {
+      margin-bottom: 2rem;
+    }
+    .py-5xs {
+      padding-top: 0.125rem;
+      padding-bottom: 0.125rem;
+    }
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .bg-btn-primary-base {
+      background-color: #007bff; /* 仅作示意，可根据需要更改 */
+    }
+    .text-btn-primary-label {
+      color: #fff; /* 仅作示意，可根据需要更改 */
+    }
+    .text-cta {
+      cursor: pointer;
+    }
+    .rounded-full {
+      border-radius: 9999px;
+    }
+    /* 其他用于布局和过渡的类省略，保留核心逻辑 */
+  </style>
+</head>
+<body>
+  <div class="mb-l flex flex-col mt-s">
+    <div class="max-w-container w-full"></div>
+
+    <!-- 这是导航标签，用于切换图表 -->
+    <nav class="py-5xs no-scrollbar flex overflow-auto justify-center" style="mask-image:linear-gradient(to right, transparent calc(var(--gutter-size) - 20px), #000 var(--gutter-size), #000 calc(var(--document-width) - var(--gutter-size)), transparent calc(var(--document-width) - var(--gutter-size) + 20px))">
+      <div class="h-full w-[var(--gutter-size)] min-w-[var(--gutter-size)] shrink-0"></div>
+      <div class="relative">
+        <div class="bg-btn-primary-base text-btn-primary-label pointer-evens-none absolute z-[2] flex h-full w-full transition-[clip-path] duration-300" aria-hidden="true" style="clip-path: inset(0px 810.734375px 0% 0px round 60px);">
+          <button type="button" class="text-cta min-h-button px-xs mr-6xs whitespace-nowrap rounded-full" tabindex="-1">Many-Shot Math</button>
+          <button type="button" class="text-cta min-h-button px-xs mr-6xs whitespace-nowrap rounded-full" tabindex="-1">LMP Math</button>
+          <button type="button" class="text-cta min-h-button px-xs mr-6xs whitespace-nowrap rounded-full" tabindex="-1">Soft Tokens Math</button>
+          <button type="button" class="text-cta min-h-button px-xs mr-6xs whitespace-nowrap rounded-full" tabindex="-1">Prompt Injection</button>
+          <button type="button" class="text-cta min-h-button px-xs mr-6xs whitespace-nowrap rounded-full" tabindex="-1">LMP Misuse</button>
+          <button type="button" class="text-cta min-h-button px-xs mr-6xs whitespace-nowrap rounded-full" tabindex="-1">Transferred Vision Attacks</button>
+        </div>
+        <div class="relative z-[1] flex min-w-max">
+          <button type="button" class="text-cta min-h-button px-xs whitespace-nowrap rounded-full ease-curve-d duration-normal mr-6xs transition-colors">Many-Shot Math</button>
+          <button type="button" class="text-cta min-h-button px-xs whitespace-nowrap rounded-full ease-curve-d duration-normal mr-6xs transition-colors hover:bg-btn-primary-white--hover dark:hover:bg-gray-80">LMP Math</button>
+          <button type="button" class="text-cta min-h-button px-xs whitespace-nowrap rounded-full ease-curve-d duration-normal mr-6xs transition-colors hover:bg-btn-primary-white--hover dark:hover:bg-gray-80">Soft Tokens Math</button>
+          <button type="button" class="text-cta min-h-button px-xs whitespace-nowrap rounded-full ease-curve-d duration-normal mr-6xs transition-colors hover:bg-btn-primary-white--hover dark:hover:bg-gray-80">Prompt Injection</button>
+          <button type="button" class="text-cta min-h-button px-xs whitespace-nowrap rounded-full ease-curve-d duration-normal mr-6xs transition-colors hover:bg-btn-primary-white--hover dark:hover:bg-gray-80">LMP Misuse</button>
+          <button type="button" class="text-cta min-h-button px-xs whitespace-nowrap rounded-full ease-curve-d duration-normal mr-6xs transition-colors hover:bg-btn-primary-white--hover dark:hover:bg-gray-80">Transferred Vision Attacks</button>
+        </div>
+      </div>
+      <div class="h-full w-[var(--gutter-size)] min-w-[var(--gutter-size)] shrink-0"></div>
+    </nav>
+
+    <!-- 这是图表容器，每个图表对应一个 div，通过切换显示/隐藏实现 -->
+    <div class="mt-s relative">
+      <!-- 第一个图表（默认显示） -->
+      <div class="transition-opacity duration-300 [&>*]:!my-0 relative" aria-hidden="false">
+        <div class="my-l grid w-full grid-cols-12 max-w-container">
+          <div class="col-span-12">
+            <div class="gap-3xs grid h-full w-full grid-cols-1 m:grid-cols-1">
+              <div class="flex flex-col w-full mx-auto ease-curve-c duration-normal transition-opacity max-w-media relative">
+                <div class="relative w-full aspect-undefined">
+                  <div class="relative h-full w-full overflow-hidden rounded-md aspect-auto ease-curve-d duration-normal bg-transparent transition-[background]">
+                    <!-- 这里是第一个图表的图像 -->
+                    <picture class="mx-auto">
+                      <!-- ...你的 <source> 和 <img> 标签... -->
+                      <img alt="Heatmap titled 'Many-shots attack on math'..." src="https://images.ctfassets.net/kftzwdyauwt9/6EowQrzC4oreNSwKzq5n0q/5f55a2501515e47079b2d1bf26bfd064/Figure_A_Light.svg" />
+                    </picture>
+                  </div>
+                </div>
+                <!-- 图片底下的描述文字 -->
+                <div class="relative w-full max-w-content mx-auto grid grid-cols-12">
+                  <div class="max-w-none col-span-12 m:col-span-8 m:col-start-3">
+                    <div class="flex items-start line-clamp-2">
+                      <div class="flex-grow">
+                        <div class="text-caption text-copy-secondary text-pretty" data-caption-height="86" data-caption-open="true">
+                          <div class="text-component mb-v mt-v false text-start prose !my-0 max-w-none">
+                            <div class="col-span-12 m:col-span-8 m:col-start-3 max-w-none  false opacity-100">
+                              <p><i><span>A typical result in the paper...</span></i></p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div> <!-- end description -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 第二个图表（默认隐藏） -->
+      <div class="transition-opacity duration-300 [&>*]:!my-0 pointer-events-none opacity-0 absolute left-0 top-0 w-full" aria-hidden="true">
+        <div class="my-l grid w-full grid-cols-12 max-w-container">
+          <div class="col-span-12">
+            <div class="gap-3xs grid h-full w-full grid-cols-1 m:grid-cols-1">
+              <div class="flex flex-col w-full mx-auto ease-curve-c duration-normal transition-opacity max-w-media relative">
+                <div class="relative w-full aspect-undefined">
+                  <div class="relative h-full w-full overflow-hidden rounded-md aspect-auto ease-curve-d duration-normal bg-transparent transition-[background]">
+                    <!-- 第二个图表的图片 -->
+                    <picture class="mx-auto">
+                      <img alt="Heatmap titled '..." src="https://images.ctfassets.net/kftzwdyauwt9/3F1N9wns8rmOznuEu3CmXC/71b6abfdad5641f80ec2d233680a9833/Figure_B_Light.svg" />
+                    </picture>
+                  </div>
+                </div>
+                <!-- 图片底下的描述文字 -->
+                <div class="relative w-full max-w-content mx-auto grid grid-cols-12">
+                  <div class="max-w-none col-span-12 m:col-span-8 m:col-start-3">
+                    <div class="flex items-start line-clamp-2">
+                      <div class="flex-grow">
+                        <div class="text-caption text-copy-secondary text-pretty" data-caption-height="86" data-caption-open="true">
+                          <div class="text-component mb-v mt-v false text-start prose !my-0 max-w-none">
+                            <div class="col-span-12 m:col-span-8 m:col-start-3 max-w-none  false opacity-100">
+                              <p><i><span>A typical result in the paper...</span></i></p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div> <!-- end description -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 余下标签对应的图表均类似，省略重复内容，只保留结构 -->
+      <div class="transition-opacity duration-300 [&>*]:!my-0 pointer-events-none opacity-0 absolute left-0 top-0 w-full" aria-hidden="true">
+        <!-- 第三个图表 -->
+      </div>
+      <div class="transition-opacity duration-300 [&>*]:!my-0 pointer-events-none opacity-0 absolute left-0 top-0 w-full" aria-hidden="true">
+        <!-- 第四个图表 -->
+      </div>
+      <div class="transition-opacity duration-300 [&>*]:!my-0 pointer-events-none opacity-0 absolute left-0 top-0 w-full" aria-hidden="true">
+        <!-- 第五个图表 -->
+      </div>
+      <div class="transition-opacity duration-300 [&>*]:!my-0 pointer-events-none opacity-0 absolute left-0 top-0 w-full" aria-hidden="true">
+        <!-- 第六个图表 -->
+      </div>
+    </div>
+  </div>
+
+  <!-- 如果需要切换，最好用点简单的 JS 控制，如点击按钮时切换对应图表的 aria-hidden 等类名 -->
+  <script>
+    // 示例，仅展示思路
+    const tabs = document.querySelectorAll('nav button');
+    const sections = document.querySelectorAll('.mt-s .transition-opacity');
+    
+    tabs.forEach((tab, index) => {
+      tab.addEventListener('click', () => {
+        sections.forEach((section, sIndex) => {
+          if (sIndex === index) {
+            section.setAttribute('aria-hidden', 'false');
+            section.classList.remove('pointer-events-none', 'opacity-0');
+          } else {
+            section.setAttribute('aria-hidden', 'true');
+            section.classList.add('pointer-events-none', 'opacity-0');
+          }
+        });
+      });
+    });
+  </script>
+</body>
+</html>
